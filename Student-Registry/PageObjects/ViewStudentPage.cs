@@ -13,13 +13,8 @@ namespace Student_Registry.PageObjects
 
         public override string PageUrl => "https://mvc-app-node-express.nakov.repl.co/students";
 
-        public ReadOnlyCollection<IWebElement> ListOfAllStudents => driver.FindElements(By.CssSelector("body > ul > li"));
 
-        public string[] GetRegisteredStudents()
-        {
-            var elementsStudents = this.ListOfAllStudents.Select(student => student.Text).ToArray();
-            return elementsStudents;
-        }
+       
 
         
     }

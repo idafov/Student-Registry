@@ -61,9 +61,9 @@ namespace Student_Registry.Tests
             browser.Open();
 
 
-            browser.LinkViewStudentsPage.Click();
+            browser.LinkHomePage.Click();
 
-            Assert.AreEqual("https://mvc-app-node-express.nakov.repl.co/students", browser.GetPageURL());
+            Assert.AreEqual("https://mvc-app-node-express.nakov.repl.co/", browser.GetPageURL());
 
         }
 

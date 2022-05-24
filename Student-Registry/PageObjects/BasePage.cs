@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,18 @@ namespace Student_Registry.PageObjects
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
         }
+        public ReadOnlyCollection<IWebElement> ListOfAllStudents => driver.FindElements(By.CssSelector("body > ul > li"));
+
+        public string[] GetRegisteredStudents()
+        {
+            var elementsStudents = this.ListOfAllStudents.Select(student => student.Text).ToArray();
+            return elementsStudents;
+        }
+
+        public Random random = new Random();
+        public string longStudentName = string.Empty;
+
+
 
         public IWebElement LinkHomePage => driver.FindElement(By.CssSelector("body > a:nth-child(1)"));
         public IWebElement LinkViewStudentsPage => driver.FindElement(By.CssSelector("body > a:nth-child(3)"));
