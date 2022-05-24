@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Student_Registry.Tests
@@ -76,5 +77,43 @@ namespace Student_Registry.Tests
             browser.LinkAddStudentsPage.Click();
             Assert.AreEqual("https://mvc-app-node-express.nakov.repl.co/add-student", browser.GetPageURL());
         }
+
+        [Test]
+        public void Test_Current_Registered_Users_Num()
+        {
+            var browser = new ViewStudentPage(driver);
+            browser.Open();
+            var students = browser.GetRegisteredStudents();
+
+            var studentTotalNumber = 0;
+
+            for (int i = 0; i < students.Length; i++)
+            {
+                studentTotalNumber++;
+            }
+
+            Assert.AreEqual(studentTotalNumber, students.Length);
+            
+        }
+
+        [Test]
+        public void Test_Are_Current_Registered_Users_Displayed_Correctly()
+        {
+            var browser = new ViewStudentPage(driver);
+            browser.Open();
+
+
+            var students = browser.GetRegisteredStudents();
+            foreach (var st in students)
+            {
+                Assert.IsTrue(st.Contains("("));
+                Assert.IsTrue(st.Contains(")"));
+                Assert.IsTrue(st.Contains("@"));
+                Assert.IsTrue(st.Contains("."));
+                Assert.That(st, Is.Not.Empty);
+                
+            }
+        }
+
     }
 }

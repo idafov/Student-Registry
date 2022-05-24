@@ -20,5 +20,7 @@ namespace Student_Registry.PageObjects
             var elementsStudents = this.ListOfAllStudents.Select(student => student.Text).ToArray();
             return elementsStudents;
         }
+
+        
     }
 }
